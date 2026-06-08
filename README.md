@@ -1,25 +1,13 @@
-# Ergo Valle Editora — One Page v1
+# Ergo Valle Editora — One Page v2
 
-MiniSite institucional e comercial da Ergo Valle Editora.
+Site institucional em página única para a Ergo Valle Editora.
 
-## Estrutura
+## Atualizações da v2
 
-- index.html
-- style.css
-- script.js
-- assets/capa-ebook.png
-- assets/capa-fisico.png
-
-## Foco da página
-
-- eBook Kindle de O Diabo Justo disponível;
-- versão física em breve;
-- apresentação da Ergo Valle Editora;
-- apresentação do autor E. S. Almeida;
-- contato editorial.
-
-## Como abrir localmente
-
-```bash
-xdg-open index.html
-```
+- Capa principal maior e mais impactante no topo.
+- Sinopse completa e mais forte de O Diabo Justo.
+- Seção "Por que ler O Diabo Justo?".
+- Botão de compra Kindle no destaque e no catálogo.
+- Instagram do autor E. S. Almeida: @e.s.almeida_.
+- Catálogo com títulos reais em preparação, sem revelar sinopses completas.
+- Texto deixando claro que O Diabo Justo é o Livro Primeiro da saga O Evangelho dos Dragões Caídos.
