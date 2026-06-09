@@ -254,3 +254,315 @@ h1 { margin: 0; max-width: 760px; font-size: clamp(4.2rem, 9vw, 8.8rem); line-he
   .text-card, .author-box, .contact-card { padding: 24px; }
   .synopsis-card { padding: 26px; }
 }
+
+
+/* =========================================================
+   V3 — Ajustes reais para celular
+   Mantém a versão desktop e reorganiza apenas telas menores.
+   ========================================================= */
+@media (max-width: 760px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .site-header {
+    width: min(100% - 32px, 1180px);
+    padding: 18px 0 10px;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to bottom, rgba(7,5,4,.94), rgba(7,5,4,.62));
+    border-bottom: 1px solid rgba(214,174,104,.08);
+  }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    font-size: 1.05rem;
+  }
+
+  .brand strong {
+    font-size: 1.25rem;
+  }
+
+  .brand small {
+    font-size: .68rem;
+    letter-spacing: .13em;
+  }
+
+  .section-pad {
+    width: min(100% - 32px, 1180px);
+    padding: 44px 0;
+  }
+
+  .hero {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 26px;
+    padding-top: 34px;
+    padding-bottom: 46px;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-book {
+    order: 2;
+    justify-content: center;
+    margin-top: 4px;
+  }
+
+  .hero-book img,
+  .hero-book-large img {
+    width: min(78vw, 340px);
+    max-height: 54vh;
+    object-fit: contain;
+    transform: rotate(-1deg);
+    border-radius: 10px;
+  }
+
+  .book-glow {
+    inset: 3% 12%;
+    opacity: .75;
+  }
+
+  .eyebrow {
+    font-size: .64rem;
+    letter-spacing: .18em;
+    line-height: 1.55;
+  }
+
+  h1 {
+    font-size: clamp(3.7rem, 18vw, 5.4rem);
+    line-height: .82;
+    letter-spacing: -.055em;
+  }
+
+  .hero-subtitle {
+    margin-top: 18px;
+    font-size: 1.04rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 52px;
+  }
+
+  .status-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .status-row span {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .section-title {
+    margin-bottom: 24px;
+  }
+
+  .section-title h2 {
+    font-size: clamp(2.35rem, 12vw, 3.55rem);
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .book-panel {
+    grid-template-columns: 112px 1fr;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 24px;
+    align-items: center;
+  }
+
+  .panel-cover img {
+    width: 112px;
+    max-width: 112px;
+    border-radius: 7px;
+  }
+
+  .panel-content h3 {
+    font-size: 1.85rem;
+    margin: 10px 0 6px;
+  }
+
+  .panel-content p {
+    font-size: .94rem;
+    line-height: 1.58;
+    margin-bottom: 14px;
+  }
+
+  .panel-content .btn {
+    width: auto;
+    min-height: 40px;
+  }
+
+  .synopsis-card {
+    padding: 24px 20px;
+    border-radius: 26px;
+  }
+
+  .synopsis-card h2 {
+    font-size: clamp(2.1rem, 11vw, 3.15rem);
+    line-height: .98;
+  }
+
+  .synopsis-card p {
+    font-size: .98rem;
+    line-height: 1.75;
+  }
+
+  .synopsis-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid,
+  .catalog-grid,
+  .catalog-grid-expanded,
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid {
+    gap: 12px;
+  }
+
+  .why-grid article {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .why-grid h3 {
+    font-size: 1.45rem;
+  }
+
+  .catalog-card,
+  .catalog-grid-expanded .catalog-card {
+    grid-template-columns: 96px 1fr;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 22px;
+    align-items: center;
+  }
+
+  .catalog-card img,
+  .placeholder-cover,
+  .catalog-grid-expanded .catalog-card img,
+  .catalog-grid-expanded .placeholder-cover {
+    width: 96px;
+    min-width: 96px;
+  }
+
+  .catalog-card h3 {
+    font-size: 1.38rem;
+  }
+
+  .catalog-card p {
+    font-size: .92rem;
+    line-height: 1.5;
+  }
+
+  .text-card,
+  .author-box,
+  .contact-card {
+    padding: 24px 20px;
+    border-radius: 26px;
+  }
+
+  .values-grid div {
+    padding: 20px;
+  }
+
+  .author-box {
+    grid-template-columns: 76px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .author-avatar {
+    width: 76px;
+    height: 76px;
+    font-size: 1.8rem;
+  }
+
+  .author-links a,
+  .contact-links a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .contact-links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .section-pad,
+  .site-header {
+    width: min(100% - 24px, 1180px);
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 19vw, 4.55rem);
+  }
+
+  .hero-book img,
+  .hero-book-large img {
+    width: min(84vw, 310px);
+  }
+
+  .book-panel {
+    grid-template-columns: 96px 1fr;
+    padding: 16px;
+  }
+
+  .panel-cover img {
+    width: 96px;
+    max-width: 96px;
+  }
+
+  .panel-content h3 {
+    font-size: 1.55rem;
+  }
+
+  .panel-content p {
+    font-size: .9rem;
+  }
+
+  .tag,
+  .status-row span {
+    font-size: .68rem;
+    letter-spacing: .06em;
+  }
+
+  .catalog-card,
+  .catalog-grid-expanded .catalog-card {
+    grid-template-columns: 82px 1fr;
+  }
+
+  .catalog-card img,
+  .placeholder-cover,
+  .catalog-grid-expanded .catalog-card img,
+  .catalog-grid-expanded .placeholder-cover {
+    width: 82px;
+    min-width: 82px;
+  }
+}
