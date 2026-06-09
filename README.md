@@ -1,18 +1,22 @@
-# Ergo Valle Editora — One Page v2
+# Ergo Valle Editora — One Page v4 (imagens reais + mobile)
 
-Site institucional em página única para a Ergo Valle Editora.
+Atualização feita com as imagens reais enviadas: capa completa, lombada, logo da Ergo Valle e foto do autor.
 
-## Atualizações da v2
+Principais mudanças:
+- capa do eBook substituída por recorte real da capa enviada;
+- seção nova com prévia da futura edição física: capa completa + lombada;
+- logo real da Ergo Valle no topo;
+- foto real do autor na seção “Autor e fundador”;
+- ajustes de CSS para celular sem prejudicar desktop.
 
-- Capa principal maior e mais impactante no topo.
-- Sinopse completa e mais forte de O Diabo Justo.
-- Seção "Por que ler O Diabo Justo?".
-- Botão de compra Kindle no destaque e no catálogo.
-- Instagram do autor E. S. Almeida: @e.s.almeida_.
-- Catálogo com títulos reais em preparação, sem revelar sinopses completas.
-- Texto deixando claro que O Diabo Justo é o Livro Primeiro da saga O Evangelho dos Dragões Caídos.
+Publicação:
+```bash
+cd ~/Downloads
+unzip Ergo_Valle_Editora_OnePage_v4_imagens_reais.zip -d ergovalle-site-v4
+cd ~/minisite
+cp -r ~/Downloads/ergovalle-site-v4/ergovalle_onepage_v4_imagens_reais/* ~/minisite/
 
-
-## Versão 3 — ajuste mobile
-
-Esta versão mantém o desktop e adiciona media queries para melhorar a leitura no celular: hero reorganizado, capa menor, botões em largura total, cards compactos e catálogo mais legível.
+git add .
+git commit -m "Atualiza Ergo Valle com imagens reais e versão mobile"
+git push origin main
+```
