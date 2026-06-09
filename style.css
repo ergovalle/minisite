@@ -709,3 +709,341 @@ h1 { margin: 0; max-width: 760px; font-size: clamp(4.2rem, 9vw, 8.8rem); line-he
     width: min(76vw, 260px);
   }
 }
+
+
+/* =========================================================
+   V5 — Livro 3D interativo na abertura
+   Desktop: hover mostra lombada / lateral.
+   Clique ou toque: vira para a contracapa.
+   ========================================================= */
+
+.hero-book-interactive {
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.book-stage {
+  width: min(620px, 100%);
+  min-height: 610px;
+  perspective: 2400px;
+  perspective-origin: 50% 46%;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.book-3d {
+  --book-depth: 86px;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  position: relative;
+  width: min(390px, 72vw);
+  aspect-ratio: 669 / 1024;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transform: rotateY(0deg) rotateX(1deg) rotateZ(-0.4deg);
+  transition: transform 950ms cubic-bezier(.19,.78,.17,1), filter 300ms ease;
+  cursor: pointer;
+  outline: none;
+  overflow: visible;
+  filter: drop-shadow(0 38px 56px rgba(0,0,0,.58));
+}
+
+.book-3d:focus-visible {
+  filter: drop-shadow(0 0 0.75rem rgba(214,174,104,.55));
+}
+
+/* Desktop: o livro vira para a esquerda e revela uma lombada grossa, como exemplar físico de 430 páginas. */
+.book-3d:hover {
+  transform: translateX(28px) rotateY(-38deg) rotateX(2deg) rotateZ(-0.6deg);
+}
+
+/* Clique/toque: vira completamente e mostra a contracapa. */
+.book-3d.is-flipped {
+  transform: rotateY(180deg) rotateX(1deg);
+}
+
+.book-3d.is-flipped:hover {
+  transform: rotateY(180deg) rotateX(1deg);
+}
+
+.book-face,
+.book-spine,
+.book-pages {
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(214,174,104,.28);
+  backface-visibility: hidden;
+}
+
+.book-face {
+  inset: 0;
+  border-radius: 14px;
+  box-shadow:
+    0 30px 85px rgba(0,0,0,.60),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+.book-face img,
+.book-spine img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.book-front {
+  transform: translateZ(calc(var(--book-depth) / 2));
+}
+
+.book-back {
+  transform: rotateY(180deg) translateZ(calc(var(--book-depth) / 2));
+  background: #d8c9ad;
+}
+
+/* Lombada real: grossa, visível no hover, sem cortar a capa. */
+.book-spine {
+  width: var(--book-depth);
+  height: 100%;
+  left: calc(var(--book-depth) / -2);
+  top: 0;
+  transform: rotateY(-90deg) translateZ(calc(var(--book-depth) / 2));
+  transform-origin: center center;
+  border-radius: 8px 3px 3px 8px;
+  background: #cbbd9e;
+  box-shadow: inset -12px 0 20px rgba(0,0,0,.32), inset 8px 0 16px rgba(255,255,255,.08);
+}
+
+.book-spine img {
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Bloco das folhas: aparece como espessura branca/creme no lado oposto, reforçando que é um livro grosso. */
+.book-pages {
+  width: var(--book-depth);
+  height: 97%;
+  right: calc(var(--book-depth) / -2);
+  top: 1.5%;
+  transform: rotateY(90deg) translateZ(calc(var(--book-depth) / 2));
+  transform-origin: center center;
+  border-radius: 3px 8px 8px 3px;
+  background:
+    linear-gradient(90deg, rgba(70,45,25,.20), rgba(255,246,220,.92) 18%, rgba(210,190,154,.95) 50%, rgba(112,78,48,.45)),
+    repeating-linear-gradient(180deg, rgba(60,40,25,.26) 0 1px, rgba(244,230,196,.90) 1px 4px);
+  box-shadow: inset 10px 0 22px rgba(70,45,25,.30), inset -10px 0 18px rgba(0,0,0,.20);
+}
+
+.book-hint {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: .86rem;
+  text-align: center;
+  letter-spacing: .03em;
+}
+
+.hero-book-interactive > img {
+  display: none;
+}
+
+/* Ajustes do componente 3D em telas médias e pequenas */
+@media (max-width: 1100px) {
+  .book-stage {
+    width: min(540px, 100%);
+    min-height: 540px;
+  }
+
+  .book-3d {
+    --book-depth: 74px;
+    width: min(340px, 72vw);
+  }
+}
+
+@media (max-width: 900px) {
+  .book-stage {
+    width: min(460px, 90vw);
+    min-height: 500px;
+  }
+
+  .book-3d {
+    --book-depth: 66px;
+    width: min(310px, 70vw);
+    transform: rotateY(0deg) rotateZ(-.3deg);
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-book-interactive {
+    order: 0;
+    margin-top: 10px;
+  }
+
+  .book-stage {
+    width: min(360px, 96vw);
+    min-height: 430px;
+  }
+
+  .book-3d {
+    --book-depth: 54px;
+    width: min(238px, 64vw);
+  }
+
+  /* No celular não há hover real: toque vira para a contracapa. */
+  .book-3d:hover {
+    transform: rotateY(0deg) rotateZ(-.3deg);
+  }
+
+  .book-hint {
+    font-size: .75rem;
+    max-width: 285px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .book-stage {
+    width: min(330px, 96vw);
+    min-height: 385px;
+  }
+
+  .book-3d {
+    --book-depth: 48px;
+    width: min(214px, 62vw);
+  }
+}
+
+
+
+/* v7 — Livro físico realista no topo
+   Substitui o efeito 3D em CSS por um mockup 3D realista, evitando cortes e distorções. */
+.hero-book-realistic {
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  min-height: 620px;
+}
+
+.realistic-book-figure {
+  position: relative;
+  z-index: 2;
+  width: min(610px, 100%);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
+
+.hero-book-realistic .realistic-book-figure img {
+  width: min(560px, 100%);
+  max-height: 660px;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter:
+    drop-shadow(0 38px 55px rgba(0,0,0,.62))
+    drop-shadow(0 0 42px rgba(214,174,104,.13));
+  transform: none;
+  position: relative;
+}
+
+.realistic-book-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: .82rem;
+  text-align: center;
+  letter-spacing: .02em;
+}
+
+.hero-book-realistic .book-glow {
+  inset: 0 -4%;
+  background: radial-gradient(circle at 45% 50%, rgba(214,174,104,.25), transparent 66%);
+  filter: blur(34px);
+}
+
+@media (max-width: 1100px) {
+  .hero-book-realistic { min-height: 560px; }
+  .hero-book-realistic .realistic-book-figure img { width: min(500px, 100%); max-height: 590px; }
+}
+
+@media (max-width: 900px) {
+  .hero-book-realistic { min-height: auto; order: -1; margin-bottom: 12px; }
+  .realistic-book-figure { width: min(460px, 92vw); }
+  .hero-book-realistic .realistic-book-figure img { width: min(430px, 92vw); max-height: 520px; }
+}
+
+@media (max-width: 620px) {
+  .hero-book-realistic { margin-top: 8px; margin-bottom: 4px; }
+  .realistic-book-figure { width: min(360px, 96vw); }
+  .hero-book-realistic .realistic-book-figure img { width: min(335px, 94vw); max-height: 430px; }
+  .realistic-book-figure figcaption { font-size: .72rem; max-width: 300px; }
+}
+
+@media (max-width: 430px) {
+  .realistic-book-figure { width: min(330px, 96vw); }
+  .hero-book-realistic .realistic-book-figure img { width: min(305px, 92vw); max-height: 390px; }
+}
+
+
+/* =========================================================
+   V8 — Mockup do livro limpo, sem fundo quadriculado e sem cortes
+   ========================================================= */
+.hero-book-realistic {
+  overflow: visible;
+  min-height: 640px;
+}
+
+.realistic-book-figure {
+  width: min(660px, 100%);
+  overflow: visible;
+}
+
+.hero-book-realistic .realistic-book-figure img {
+  width: min(610px, 100%);
+  max-height: 680px;
+  object-fit: contain;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  transform: none !important;
+  filter:
+    drop-shadow(0 38px 34px rgba(0,0,0,.56))
+    drop-shadow(0 0 38px rgba(214,174,104,.12));
+}
+
+.realistic-book-figure figcaption {
+  margin-top: 6px;
+  opacity: .72;
+  font-size: .78rem;
+}
+
+@media (max-width: 1100px) {
+  .hero-book-realistic { min-height: 560px; }
+  .hero-book-realistic .realistic-book-figure img { width: min(540px, 100%); max-height: 600px; }
+}
+
+@media (max-width: 900px) {
+  .hero-book-realistic { min-height: auto; order: -1; margin: 2px 0 14px; }
+  .realistic-book-figure { width: min(520px, 96vw); }
+  .hero-book-realistic .realistic-book-figure img { width: min(460px, 94vw); max-height: 560px; }
+}
+
+@media (max-width: 620px) {
+  .hero-book-realistic { margin: 0 0 6px; }
+  .realistic-book-figure { width: min(390px, 98vw); }
+  .hero-book-realistic .realistic-book-figure img { width: min(350px, 94vw); max-height: 455px; }
+  .realistic-book-figure figcaption { display: none; }
+}
+
+@media (max-width: 430px) {
+  .realistic-book-figure { width: min(350px, 98vw); }
+  .hero-book-realistic .realistic-book-figure img { width: min(318px, 92vw); max-height: 420px; }
+}
